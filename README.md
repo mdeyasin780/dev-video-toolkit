@@ -9,6 +9,17 @@ A small, original developer utility for video editors: inspect one or more media
 - Emits JSON by default and compact CSV with `--csv`.
 - Keeps the core implementation dependency-free; only FFmpeg/`ffprobe` is required.
 
+## Recursive asset inventory
+
+For a footage folder, `media_inventory.py` scans nested directories and creates a machine-readable inventory. This is useful for editor hand-offs, batch review, and automation or agent workflows.
+
+```bash
+python3 media_inventory.py ./footage > footage-inventory.json
+python3 media_inventory.py ./footage --extensions mp4 mov webm > footage-inventory.json
+```
+
+Unreadable media is recorded with an `error` field instead of stopping the entire inventory run.
+
 ## Requirements
 
 - Python 3.10+
