@@ -20,6 +20,16 @@ python3 media_inventory.py ./footage --extensions mp4 mov webm > footage-invento
 
 Unreadable media is recorded with an `error` field instead of stopping the entire inventory run.
 
+## Markdown handoff report
+
+Turn an inventory into a concise report for a client, editor, or issue tracker:
+
+```bash
+python3 media_report.py footage-inventory.json --title "Monday Footage" -o footage-report.md
+```
+
+The report includes asset counts, duration, codecs, resolution, and a separate section for files that need attention.
+
 ## Requirements
 
 - Python 3.10+
