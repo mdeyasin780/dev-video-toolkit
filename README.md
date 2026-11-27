@@ -1,5 +1,7 @@
 # Media Inspector CLI
 
+[![CI](https://github.com/mdeyasin780/dev-video-toolkit/actions/workflows/ci.yml/badge.svg)](https://github.com/mdeyasin780/dev-video-toolkit/actions/workflows/ci.yml)
+
 A small, original developer utility for video editors: inspect one or more media files with `ffprobe` and export a stable JSON or CSV report for asset tracking and batch workflows.
 
 ## Features
@@ -42,11 +44,16 @@ python3 media_inspector.py input.mp4
 python3 media_inspector.py clips/*.mov --csv > media-report.csv
 ```
 
-## Development
+## Development and CI
+
+Run the same checks locally that GitHub Actions runs automatically on every push and pull request:
 
 ```bash
+python3 -m compileall -q media_inspector.py media_inventory.py media_report.py tests
 python3 -m unittest discover -s tests -v
 ```
+
+The CI workflow tests Python 3.10 through 3.13. See [CHANGELOG.md](CHANGELOG.md) for project history.
 
 ## License and provenance
 
