@@ -26,7 +26,6 @@ jobs:
         uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
-          cache: pip
 
       - name: Compile Python modules
         run: python -m compileall -q media_inspector.py media_inventory.py media_report.py media_diff.py tests
