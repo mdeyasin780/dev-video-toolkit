@@ -22,6 +22,19 @@ python3 media_inventory.py ./footage --extensions mp4 mov webm > footage-invento
 
 Unreadable media is recorded with an `error` field instead of stopping the entire inventory run.
 
+## Compare two inventory snapshots
+
+Use `media_diff.py` to identify new, removed, changed, and unchanged assets between two scans. Compare snapshots generated from the same footage root so their `file` paths remain stable.
+
+```bash
+python3 media_inventory.py ./footage > inventory-before.json
+# Add, remove, or replace footage, then scan again.
+python3 media_inventory.py ./footage > inventory-after.json
+python3 media_diff.py inventory-before.json inventory-after.json -o inventory-diff.json
+```
+
+The diff output contains a summary plus the full before/after records for changed assets. This makes it suitable for editor handoffs, review checklists, and automated pipeline decisions.
+
 ## Markdown handoff report
 
 Turn an inventory into a concise report for a client, editor, or issue tracker:
@@ -49,7 +62,7 @@ python3 media_inspector.py clips/*.mov --csv > media-report.csv
 Run the same checks locally that GitHub Actions runs automatically on every push and pull request:
 
 ```bash
-python3 -m compileall -q media_inspector.py media_inventory.py media_report.py tests
+python3 -m compileall -q media_inspector.py media_inventory.py media_report.py media_diff.py tests
 python3 -m unittest discover -s tests -v
 ```
 
